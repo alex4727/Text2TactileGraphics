@@ -1,0 +1,5 @@
+{
+  "_comment": "This benchmark reuses normal maps from text2texture. See text2texture/prompts.json for the full prompt list.",
+  "source": "../text2texture/prompts.json",
+  "seeds": [42]
+}

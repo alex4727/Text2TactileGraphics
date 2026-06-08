@@ -1,0 +1,44 @@
+*.webp
+*.glb
+!blender-render-toolkit/examples/full_mesh.glb
+
+models/
+
+# Others
+debug/
+.ruff_cache/
+ckpt/
+ckpt.tar
+
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+.gradio
+
+# Cursor & VSCode & IDE files
+.cursor/
+.vscode/
+.idea/
+.DS_Store
+
+# Output directories
+output**/
+
+# Temporary files
+gradio.log
+
+# Results for visualization
+**.tar.gz
+
+# Blender render toolkit — track only the slimmed template + Python scripts.
+# The pre-slim 530 MB working file and other large auxiliary blends are local-only.
+blender-render-toolkit/config/lamp_xy_aligned_v2_render_for_method_fig.blend
+blender-render-toolkit/load/
+blender-render-toolkit/output/

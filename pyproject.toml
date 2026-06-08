@@ -1,0 +1,63 @@
+[project]
+name = "tactilegen"
+version = "0.1.0"
+description = "Generating tactile graphics for the blind and low-vision community."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "diffsynth",
+    "diffusers",
+    "flash-attn",
+    "google-genai",
+    "gradio>=6,<6.11", # Gradio tab switching issue in 6.11: https://github.com/gradio-app/gradio/issues/13198
+    "moge",
+    "numpy",
+    "nvidia-cuda-runtime-cu12",
+    "nvidia-nvjitlink-cu12",
+    "pillow",
+    "pybraille",
+    "pyvista",
+    "scipy",
+    "sentencepiece",
+    "torch",
+    "torchvision",
+    "transformers",
+    "trimesh",
+]
+
+[tool.uv.extra-build-dependencies]
+flash-attn = [{ requirement = "torch", match-runtime = true }]
+
+[tool.uv.extra-build-variables]
+flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "TRUE" }
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "pytest-regressions",
+    "ruff",
+    "scipy-stubs",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv.sources]
+moge = { git = "https://github.com/microsoft/MoGe.git" }
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.ruff.lint]
+extend-select = ["I"]
+
+[tool.pytest.ini_options]
+markers = [
+    "slow: heavy end-to-end test",
+]
+addopts = "-m 'not slow'"
