@@ -4,8 +4,8 @@ from unittest.mock import Mock
 
 import pytest
 
-from tactilegen.config import Config
-from tactilegen.generation.models import LoraManager, ModelManager
+from text2tactilegraphics.config import Config
+from text2tactilegraphics.generation.models import LoraManager, ModelManager
 
 # =============================================================================
 # Test ModelManager

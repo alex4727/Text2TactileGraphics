@@ -5,9 +5,13 @@ import numpy as np
 import torch
 from PIL import Image
 
-from tactilegen.config import Config, global_config
-from tactilegen.generation.models import LoraManager, ModelManager, global_model_manager
-from tactilegen.generation.utils import center_crop_array
+from text2tactilegraphics.config import Config, global_config
+from text2tactilegraphics.generation.models import (
+    LoraManager,
+    ModelManager,
+    global_model_manager,
+)
+from text2tactilegraphics.generation.utils import center_crop_array
 
 # Step counts supported by the Qwen texture presets.
 TextureSteps = Literal[4, 40]

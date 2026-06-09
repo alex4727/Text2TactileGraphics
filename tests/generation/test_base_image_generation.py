@@ -5,7 +5,7 @@ import pytest
 from PIL import Image
 from pytest_regressions.image_regression import ImageRegressionFixture
 
-from tactilegen.generation.base_image_generation import (
+from text2tactilegraphics.generation.base_image_generation import (
     BaseImageGenerator,
 )
 

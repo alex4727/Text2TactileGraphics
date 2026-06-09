@@ -17,10 +17,10 @@ from experiments.text2texture.config import (
     PROMPTS_PATH,
     TEXT2TEXTURE_BASELINES,
 )
-from tactilegen.config import Config
-from tactilegen.generation.models import ModelManager
-from tactilegen.generation.texture_generation import GeometryEstimator
-from tactilegen.generation.utils import normal_to_image
+from text2tactilegraphics.config import Config
+from text2tactilegraphics.generation.models import ModelManager
+from text2tactilegraphics.generation.texture_generation import GeometryEstimator
+from text2tactilegraphics.generation.utils import normal_to_image
 
 
 def scan_texture_images(run_dir: Path, baselines: list[str]) -> list[dict]:

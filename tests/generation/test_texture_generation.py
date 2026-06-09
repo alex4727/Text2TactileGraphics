@@ -8,8 +8,8 @@ from PIL import Image
 from pytest_regressions.image_regression import ImageRegressionFixture
 from pytest_regressions.ndarrays_regression import NDArraysRegressionFixture
 
-from tactilegen import GeometryEstimator, TextureGenerator
-from tactilegen.generation.utils import depth_to_image, normal_to_image
+from text2tactilegraphics import GeometryEstimator, TextureGenerator
+from text2tactilegraphics.generation.utils import depth_to_image, normal_to_image
 
 _DATA_DIR = Path(__file__).parent / "data"
 

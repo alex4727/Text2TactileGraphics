@@ -10,12 +10,15 @@ from typing import Literal
 import numpy as np
 from PIL import Image
 
-from tactilegen import TiledDiffusion
-from tactilegen.config import SENSOR_TILED_DIR, global_config
-from tactilegen.generation.base_image_generation import BaseImageGenerator
-from tactilegen.generation.segmentation import SegmentationEngine
-from tactilegen.generation.texture_generation import GeometryEstimator, TextureGenerator
-from tactilegen.generation.tileable_patch_generation import (
+from text2tactilegraphics import TiledDiffusion
+from text2tactilegraphics.config import SENSOR_TILED_DIR, global_config
+from text2tactilegraphics.generation.base_image_generation import BaseImageGenerator
+from text2tactilegraphics.generation.segmentation import SegmentationEngine
+from text2tactilegraphics.generation.texture_generation import (
+    GeometryEstimator,
+    TextureGenerator,
+)
+from text2tactilegraphics.generation.tileable_patch_generation import (
     InterTilePatchGenerator,
     IntraTilePatchGenerator,
 )

@@ -1,4 +1,4 @@
-"""Global configuration for TactileGen."""
+"""Global configuration for Text2TactileGraphics."""
 
 import atexit
 import os
@@ -16,8 +16,8 @@ from PIL import Image
 # Filesystem layout
 # =============================================================================
 
-CKPT_DIR = os.environ.get("TACTILEGEN_CKPT_DIR") or str(
-    Path.home() / ".cache" / "tactilegen" / "ckpt"
+CKPT_DIR = os.environ.get("TEXT2TACTILEGRAPHICS_CKPT_DIR") or str(
+    Path.home() / ".cache" / "text2tactilegraphics" / "ckpt"
 )
 
 DEFAULT_CKPT_PATHS: dict[str, str] = {
@@ -55,7 +55,7 @@ def get_total_gpus() -> int:
 
 def debug_enabled() -> bool:
     """True iff the UI should show the Debug settings panel."""
-    raw = os.environ.get("TACTILEGEN_DEBUG", "").strip().lower()
+    raw = os.environ.get("TEXT2TACTILEGRAPHICS_DEBUG", "").strip().lower()
     return raw not in ("", "0", "false", "no")
 
 
@@ -211,7 +211,7 @@ atexit.register(_asset_stack.close)
 
 def _materialize_asset(name: str) -> Path:
     """Return a real filesystem path for the asset `name` under `assets/`."""
-    resource = resources.files("tactilegen.assets") / name
+    resource = resources.files("text2tactilegraphics.assets") / name
     return Path(_asset_stack.enter_context(resources.as_file(resource)))
 
 

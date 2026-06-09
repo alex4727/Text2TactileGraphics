@@ -5,12 +5,12 @@ import pytest
 from PIL import Image
 from pytest_regressions.image_regression import ImageRegressionFixture
 
-from tactilegen.generation.segmentation import (
+from text2tactilegraphics.generation.segmentation import (
     SegmentationEngine,
     apply_mask_overlay,
     draw_points_on_image,
 )
-from tactilegen.generation.utils import mask_to_image
+from text2tactilegraphics.generation.utils import mask_to_image
 
 _DATA_DIR = Path(__file__).parent / "data"
 

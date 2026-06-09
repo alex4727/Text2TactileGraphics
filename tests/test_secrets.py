@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from tactilegen.secrets_ import SecretSpec, resolve_secret
+from text2tactilegraphics.secrets_ import SecretSpec, resolve_secret
 
 _KEY = "MY_KEY"
 _KEY_ALIAS = "MY_KEY_ALIAS"

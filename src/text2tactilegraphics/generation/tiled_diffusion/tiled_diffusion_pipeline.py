@@ -50,7 +50,7 @@ from diffusers.utils import (
 from diffusers.utils.torch_utils import randn_tensor
 from transformers import CLIPTextModel, CLIPTextModelWithProjection, CLIPTokenizer
 
-from tactilegen.generation.tiled_diffusion.utils import (
+from text2tactilegraphics.generation.tiled_diffusion.utils import (
     pad_tensor_x,
     pad_tensor_xy,
     pad_tensor_y,
@@ -1035,7 +1035,9 @@ class StableDiffusionXLDiffImg2ImgPipeline(
             num_inference_steps,
             strength,
             device,
-            denoising_start=denoising_start if denoising_value_valid(denoising_start) else None,
+            denoising_start=denoising_start
+            if denoising_value_valid(denoising_start)
+            else None,
         )
         latent_timestep = timesteps[:1].repeat(batch_size * num_images_per_prompt)
 

@@ -1,9 +1,9 @@
-"""Unit tests for `tactilegen.ui.app`. These tests do NOT launch a Gradio server."""
+"""Unit tests for `text2tactilegraphics.ui.app`. These tests do NOT launch a Gradio server."""
 
 import gradio as gr
 import pytest
 
-from tactilegen.ui.app import create_demo
+from text2tactilegraphics.ui.app import create_demo
 
 # =============================================================================
 # create_demo smoke
@@ -26,7 +26,7 @@ class TestCreateDemo:
 
 
 class TestDebugPanelGate:
-    """The Debug-settings panel is gated by the `TACTILEGEN_DEBUG` env var."""
+    """The Debug-settings panel is gated by the `TEXT2TACTILEGRAPHICS_DEBUG` env var."""
 
     @staticmethod
     def _has_debug_panel(demo: gr.Blocks) -> bool:
@@ -36,18 +36,18 @@ class TestDebugPanelGate:
         )
 
     def test_hidden_by_default(self, monkeypatch: pytest.MonkeyPatch):
-        monkeypatch.delenv("TACTILEGEN_DEBUG", raising=False)
+        monkeypatch.delenv("TEXT2TACTILEGRAPHICS_DEBUG", raising=False)
         assert self._has_debug_panel(create_demo()) is False
 
     def test_shown_when_enabled(self, monkeypatch: pytest.MonkeyPatch):
-        monkeypatch.setenv("TACTILEGEN_DEBUG", "1")
+        monkeypatch.setenv("TEXT2TACTILEGRAPHICS_DEBUG", "1")
         assert self._has_debug_panel(create_demo()) is True
 
     @pytest.mark.parametrize("value", ["0", "false", "FALSE", "no", ""])
     def test_falsy_values_keep_it_hidden(
         self, monkeypatch: pytest.MonkeyPatch, value: str
     ):
-        monkeypatch.setenv("TACTILEGEN_DEBUG", value)
+        monkeypatch.setenv("TEXT2TACTILEGRAPHICS_DEBUG", value)
         assert self._has_debug_panel(create_demo()) is False
 
 

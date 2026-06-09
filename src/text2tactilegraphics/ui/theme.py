@@ -1,4 +1,4 @@
-"""Gradio theme for the TactileGen UI."""
+"""Gradio theme for the Text2TactileGraphics UI."""
 
 import gradio as gr
 

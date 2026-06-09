@@ -1,9 +1,13 @@
 import numpy as np
 from PIL import Image
 
-from tactilegen.config import DEFAULT_TILED_DIFFUSION_MASK, Config, global_config
-from tactilegen.generation.models import ModelManager, global_model_manager
-from tactilegen.generation.utils import (
+from text2tactilegraphics.config import (
+    DEFAULT_TILED_DIFFUSION_MASK,
+    Config,
+    global_config,
+)
+from text2tactilegraphics.generation.models import ModelManager, global_model_manager
+from text2tactilegraphics.generation.utils import (
     SWAP_DIRECTION,
     as_pil,
     center_crop,

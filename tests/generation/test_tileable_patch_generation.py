@@ -6,7 +6,7 @@ import pytest
 from PIL import Image
 from pytest_regressions.image_regression import ImageRegressionFixture
 
-from tactilegen.generation.tileable_patch_generation import (
+from text2tactilegraphics.generation.tileable_patch_generation import (
     InterTilePatchGenerator,
     IntraTilePatchGenerator,
     TiledDiffusion,

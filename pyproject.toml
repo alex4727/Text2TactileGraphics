@@ -1,5 +1,5 @@
 [project]
-name = "tactilegen"
+name = "text2tactilegraphics"
 version = "0.1.0"
 description = "Generating tactile graphics for the blind and low-vision community."
 readme = "README.md"

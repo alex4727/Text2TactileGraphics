@@ -1,1 +1,1 @@
-"""Paper benchmark reproduction scripts for TactileGen."""
+"""Paper benchmark reproduction scripts for Text2TactileGraphics."""

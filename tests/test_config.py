@@ -1,6 +1,6 @@
 import pytest
 
-from tactilegen.config import BASE_IMAGE_STEPS, INFERENCE_STEPS, Config
+from text2tactilegraphics.config import BASE_IMAGE_STEPS, INFERENCE_STEPS, Config
 
 
 @pytest.fixture

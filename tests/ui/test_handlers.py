@@ -5,16 +5,19 @@ import numpy as np
 import pytest
 from PIL import Image
 
-from tactilegen import TexturedSegment
-from tactilegen.generation.base_image_generation import BaseImageGenerator
-from tactilegen.generation.segmentation import SegmentationEngine
-from tactilegen.generation.texture_generation import GeometryEstimator, TextureGenerator
-from tactilegen.generation.tileable_patch_generation import (
+from text2tactilegraphics import TexturedSegment
+from text2tactilegraphics.generation.base_image_generation import BaseImageGenerator
+from text2tactilegraphics.generation.segmentation import SegmentationEngine
+from text2tactilegraphics.generation.texture_generation import (
+    GeometryEstimator,
+    TextureGenerator,
+)
+from text2tactilegraphics.generation.tileable_patch_generation import (
     IntraTilePatchGenerator,
 )
-from tactilegen.geometry.braille import BraillePlacement
-from tactilegen.ui import handlers
-from tactilegen.ui.handlers import (
+from text2tactilegraphics.geometry.braille import BraillePlacement
+from text2tactilegraphics.ui import handlers
+from text2tactilegraphics.ui.handlers import (
     add_click,
     generate_base_image,
     generate_base_mesh,
@@ -35,7 +38,7 @@ from tactilegen.ui.handlers import (
     save_segment,
     segment_with_text,
 )
-from tactilegen.ui.state import AppState
+from text2tactilegraphics.ui.state import AppState
 
 
 def _make_image(h: int = 64, w: int = 64) -> Image.Image:
@@ -96,7 +99,6 @@ def mock_create_tactile(monkeypatch: pytest.MonkeyPatch) -> Mock:
     mock = Mock(return_value="/tmp/mesh.glb")
     monkeypatch.setattr(handlers, "create_tactile_graphic", mock)
     return mock
-
 
 
 # =============================================================================

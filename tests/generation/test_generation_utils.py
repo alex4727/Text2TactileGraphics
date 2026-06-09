@@ -4,7 +4,7 @@ import numpy as np
 import pytest
 from PIL import Image
 
-from tactilegen.generation.utils import (
+from text2tactilegraphics.generation.utils import (
     as_pil,
     center_crop,
     center_crop_array,

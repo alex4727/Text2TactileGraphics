@@ -4,7 +4,7 @@ import numpy as np
 import pytest
 from pytest_regressions.ndarrays_regression import NDArraysRegressionFixture
 
-from tactilegen.geometry.utils import depth2mesh, pv2trimesh
+from text2tactilegraphics.geometry.utils import depth2mesh, pv2trimesh
 
 _DATA_DIR = Path(__file__).parent / "data"
 

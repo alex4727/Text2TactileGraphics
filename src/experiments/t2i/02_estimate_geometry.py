@@ -21,11 +21,11 @@ from experiments.t2i.config import (
     PROMPTS_PATH,
     T2I_BASELINES,
 )
-from tactilegen.config import Config
-from tactilegen.generation.models import ModelManager
-from tactilegen.generation.segmentation import SegmentationEngine
-from tactilegen.generation.texture_generation import GeometryEstimator
-from tactilegen.generation.utils import depth_to_image, mask_to_image
+from text2tactilegraphics.config import Config
+from text2tactilegraphics.generation.models import ModelManager
+from text2tactilegraphics.generation.segmentation import SegmentationEngine
+from text2tactilegraphics.generation.texture_generation import GeometryEstimator
+from text2tactilegraphics.generation.utils import depth_to_image, mask_to_image
 
 
 def scan_images(run_dir: Path) -> list[dict]:

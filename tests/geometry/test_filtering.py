@@ -6,7 +6,7 @@ from PIL import Image
 from pytest_regressions.image_regression import ImageRegressionFixture
 from pytest_regressions.ndarrays_regression import NDArraysRegressionFixture
 
-from tactilegen.geometry.filtering import (
+from text2tactilegraphics.geometry.filtering import (
     HighpassMethod,
     apply_high_pass_to_normal_map,
     height_to_normal,

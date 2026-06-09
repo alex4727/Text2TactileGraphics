@@ -9,16 +9,16 @@ import trimesh
 from PIL import Image
 from scipy.ndimage import zoom
 
-from tactilegen.generation.segmentation import SegmentationEngine
-from tactilegen.generation.texture_generation import GeometryEstimator
-from tactilegen.geometry.displacement import (
+from text2tactilegraphics.generation.segmentation import SegmentationEngine
+from text2tactilegraphics.generation.texture_generation import GeometryEstimator
+from text2tactilegraphics.geometry.displacement import (
     DisplacementDirection,
     NormalFormat,
     apply_braille_displacements,
     apply_segment_displacements,
     apply_standard_braille_displacement,
 )
-from tactilegen.geometry.utils import (
+from text2tactilegraphics.geometry.utils import (
     depth2mesh,
     flatten_and_close_plate,
     pv2trimesh,
@@ -109,7 +109,7 @@ def create_tactile_graphic(
     logger.info("Exporting to GLB file...")
     if output_path is None:
         output_path = os.path.join(
-            tempfile.gettempdir(), f"tactilegen_mesh_{uuid4()}.glb"
+            tempfile.gettempdir(), f"text2tactilegraphics_mesh_{uuid4()}.glb"
         )
     mesh.export(output_path)
     logger.info("Export done.")

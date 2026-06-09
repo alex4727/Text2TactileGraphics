@@ -19,12 +19,12 @@ from experiments.text2texture.config import (
     TEXT2TEXTURE_BASELINES,
     TEXTURE_PROMPT_TEMPLATE,
 )
-from tactilegen.config import Config
-from tactilegen.generation.base_image_generation import (
+from text2tactilegraphics.config import Config
+from text2tactilegraphics.generation.base_image_generation import (
     GEMINI_MODELS,
     _extract_gemini_image,
 )
-from tactilegen.generation.models import LoraManager, ModelManager
+from text2tactilegraphics.generation.models import LoraManager, ModelManager
 
 
 class BenchmarkTextureGenerator:

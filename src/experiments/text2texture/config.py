@@ -4,7 +4,9 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from tactilegen.config import TEXTURE_PROMPT_TEMPLATE as _TEXTURE_PROMPT_TEMPLATE
+from text2tactilegraphics.config import (
+    TEXTURE_PROMPT_TEMPLATE as _TEXTURE_PROMPT_TEMPLATE,
+)
 
 TEXTURE_PROMPT_TEMPLATE = _TEXTURE_PROMPT_TEMPLATE
 
@@ -32,14 +34,14 @@ TEXT2TEXTURE_BASELINES = {
         "steps": 4,
         "texture_lora": "texture_lora",
         "display_name": "Ours-4",
-        "description": "TactileGen texture LoRA, 4-step distilled",
+        "description": "Text2TactileGraphics texture LoRA, 4-step distilled",
     },
     "qwen_stage2_40step": {
         "model": "qwen",
         "steps": 40,
         "texture_lora": "texture_lora",
         "display_name": "Ours-40",
-        "description": "TactileGen texture LoRA, 40-step full inference",
+        "description": "Text2TactileGraphics texture LoRA, 40-step full inference",
     },
     "nano_banana_pro": {
         "model": "nano_banana_pro",

@@ -25,15 +25,15 @@ from experiments.tiling.config import (
     TEXT2TEXTURE_OUTPUT_DIR,
     TILING_BASELINES,
 )
-from tactilegen.config import Config
-from tactilegen.generation.models import ModelManager
-from tactilegen.generation.tileable_patch_generation import (
+from text2tactilegraphics.config import Config
+from text2tactilegraphics.generation.models import ModelManager
+from text2tactilegraphics.generation.tileable_patch_generation import (
     InterTilePatchGenerator,
     IntraTilePatchGenerator,
     TiledDiffusion,
 )
-from tactilegen.generation.utils import center_crop, tile_image
-from tactilegen.geometry.filtering import apply_high_pass_to_normal_map
+from text2tactilegraphics.generation.utils import center_crop, tile_image
+from text2tactilegraphics.geometry.filtering import apply_high_pass_to_normal_map
 
 
 def apply_resize(image: Image.Image) -> Image.Image:

@@ -1,6 +1,6 @@
 import torch
 
-from tactilegen.generation.tiled_diffusion.utils import (
+from text2tactilegraphics.generation.tiled_diffusion.utils import (
     pad_tensor_x,
     pad_tensor_xy,
     pad_tensor_y,

@@ -7,9 +7,9 @@ import trimesh
 from PIL import Image
 from pytest_regressions.ndarrays_regression import NDArraysRegressionFixture
 
-from tactilegen.generation.segmentation import SegmentationEngine
-from tactilegen.generation.texture_generation import GeometryEstimator
-from tactilegen.geometry.tactile_graphics import create_tactile_graphic
+from text2tactilegraphics.generation.segmentation import SegmentationEngine
+from text2tactilegraphics.generation.texture_generation import GeometryEstimator
+from text2tactilegraphics.geometry.tactile_graphics import create_tactile_graphic
 
 _DATA_DIR = Path(__file__).parent / "data"
 

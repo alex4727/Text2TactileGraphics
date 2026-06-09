@@ -52,5 +52,5 @@
     "a five-armed starfish"
   ],
   "seeds": [42],
-  "description": "T2I Benchmark prompts for TactileGen evaluation. Distribution: ~70% simple/descriptive objects (5-6 words), ~10% scene descriptions, ~10% creative/imaginative, ~10% nature."
+  "description": "T2I Benchmark prompts for Text2TactileGraphics evaluation. Distribution: ~70% simple/descriptive objects (5-6 words), ~10% scene descriptions, ~10% creative/imaginative, ~10% nature."
 }

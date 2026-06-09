@@ -16,7 +16,7 @@ from experiments.text2texture.config import (
     PROMPTS_PATH,
     TEXT2TEXTURE_BASELINES,
 )
-from tactilegen.geometry.filtering import apply_high_pass_to_normal_map
+from text2tactilegraphics.geometry.filtering import apply_high_pass_to_normal_map
 
 
 def scan_normal_maps(run_dir: Path) -> list[dict]:

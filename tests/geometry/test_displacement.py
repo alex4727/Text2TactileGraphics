@@ -6,10 +6,10 @@ from PIL import Image
 from pytest_regressions.image_regression import ImageRegressionFixture
 from pytest_regressions.ndarrays_regression import NDArraysRegressionFixture
 
-from tactilegen import TexturedSegment
-from tactilegen.generation.utils import displacement_to_image
-from tactilegen.geometry.braille import BraillePlacement
-from tactilegen.geometry.displacement import (
+from text2tactilegraphics import TexturedSegment
+from text2tactilegraphics.generation.utils import displacement_to_image
+from text2tactilegraphics.geometry.braille import BraillePlacement
+from text2tactilegraphics.geometry.displacement import (
     NormalFormat,
     apply_braille_displacements,
     apply_displacement_to_mesh,
@@ -17,7 +17,7 @@ from tactilegen.geometry.displacement import (
     apply_standard_braille_displacement,
     tileable_patch_to_displacement,
 )
-from tactilegen.geometry.filtering import normal_to_rgb
+from text2tactilegraphics.geometry.filtering import normal_to_rgb
 
 _DATA_DIR = Path(__file__).parent / "data"
 _NORMAL_IMG = Image.open(_DATA_DIR / "normal_tileable.png").convert("RGB")
@@ -154,7 +154,9 @@ class TestClampNormalDispToMask:
     _ANCHOR_DISP = np.zeros((2, 3))
 
     def _run(self, probe_vertex, probe_disp):
-        from tactilegen.geometry.displacement import _clamp_normal_disp_to_mask
+        from text2tactilegraphics.geometry.displacement import (
+            _clamp_normal_disp_to_mask,
+        )
 
         vertices = np.vstack([self._ANCHORS, [probe_vertex]])
         disp_vec = np.vstack([self._ANCHOR_DISP, [probe_disp]])

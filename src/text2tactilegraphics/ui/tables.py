@@ -1,4 +1,4 @@
-"""Reusable saved-items tables for the TactileGen Gradio UI."""
+"""Reusable saved-items tables for the Text2TactileGraphics Gradio UI."""
 
 from collections.abc import Callable
 from copy import copy

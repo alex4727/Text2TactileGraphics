@@ -1,4 +1,4 @@
-"""Event handlers for the TactileGen Gradio UI."""
+"""Event handlers for the Text2TactileGraphics Gradio UI."""
 
 from typing import Literal
 
@@ -6,35 +6,35 @@ import gradio as gr
 import numpy as np
 from PIL import Image
 
-from tactilegen import TexturedSegment
-from tactilegen.generation.base_image_generation import BaseImageModel
-from tactilegen.generation.segmentation import (
+from text2tactilegraphics import TexturedSegment
+from text2tactilegraphics.generation.base_image_generation import BaseImageModel
+from text2tactilegraphics.generation.segmentation import (
     apply_mask_overlay,
     draw_points_on_image,
 )
-from tactilegen.generation.utils import (
+from text2tactilegraphics.generation.utils import (
     depth_to_image,
     displacement_to_image,
     mask_to_image,
     normal_to_image,
     tile_image,
 )
-from tactilegen.geometry.braille import (
+from text2tactilegraphics.geometry.braille import (
     BraillePlacement,
     draw_pending_box,
     render_braille_on_image,
 )
-from tactilegen.geometry.displacement import (
+from text2tactilegraphics.geometry.displacement import (
     DisplacementDirection,
     NormalFormat,
     tileable_patch_to_displacement,
 )
-from tactilegen.geometry.filtering import (
+from text2tactilegraphics.geometry.filtering import (
     HighpassMethod,
     apply_high_pass_to_normal_map,
 )
-from tactilegen.geometry.tactile_graphics import create_tactile_graphic
-from tactilegen.ui.state import AppState, TilingMethod
+from text2tactilegraphics.geometry.tactile_graphics import create_tactile_graphic
+from text2tactilegraphics.ui.state import AppState, TilingMethod
 
 # ----------------------------------------------------------------- shared helpers
 

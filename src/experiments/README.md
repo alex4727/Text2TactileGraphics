@@ -1,10 +1,10 @@
-# TactileGen Benchmark Experiments
+# Text2TactileGraphics Benchmark Experiments
 
-This directory contains scripts for reproducing the benchmark tables from the TactileGen paper. The scripts write outputs under each benchmark directory's `output/<run-id>/` folder.
+This directory contains scripts for reproducing the benchmark tables from the Text2TactileGraphics paper. The scripts write outputs under each benchmark directory's `output/<run-id>/` folder.
 
 ## Setup
 
-Install TactileGen following the main project README and make sure the required checkpoints and API keys are configured. Most benchmark scripts use the project dependencies. The patch self-similarity metric additionally uses LPIPS:
+Install Text2TactileGraphics following the main project README and make sure the required checkpoints and API keys are configured. Most benchmark scripts use the project dependencies. The patch self-similarity metric additionally uses LPIPS:
 
 ```bash
 uv pip install lpips

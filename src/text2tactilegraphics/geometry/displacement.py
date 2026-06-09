@@ -10,14 +10,14 @@ from PIL import Image
 from scipy.interpolate import RectBivariateSpline
 from scipy.ndimage import gaussian_filter
 
-from tactilegen.generation.utils import tile_image
-from tactilegen.geometry.braille import (
+from text2tactilegraphics.generation.utils import tile_image
+from text2tactilegraphics.geometry.braille import (
     STANDARD_DOT_HEIGHT,
     BraillePlacement,
     create_braille_displacement_map,
     create_standard_braille_displacement_map,
 )
-from tactilegen.geometry.filtering import normal_to_height, rgb_to_normal
+from text2tactilegraphics.geometry.filtering import normal_to_height, rgb_to_normal
 
 logger = logging.getLogger(__name__)
 

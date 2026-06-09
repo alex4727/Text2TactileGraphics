@@ -4,13 +4,13 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from tactilegen.config import (
+from text2tactilegraphics.config import (
     DEFAULT_PLATE_IMAGE,
 )
-from tactilegen.config import (
+from text2tactilegraphics.config import (
     STYLE_PROMPT_PREFIX as _STYLE_PROMPT_PREFIX,
 )
-from tactilegen.config import (
+from text2tactilegraphics.config import (
     STYLE_PROMPT_SUFFIX as _STYLE_PROMPT_SUFFIX,
 )
 

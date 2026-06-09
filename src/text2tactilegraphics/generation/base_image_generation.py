@@ -5,9 +5,13 @@ from typing import Any, Literal
 
 from PIL import Image
 
-from tactilegen.config import Config, global_config
-from tactilegen.generation.models import LoraManager, ModelManager, global_model_manager
-from tactilegen.generation.utils import open_rgb_image
+from text2tactilegraphics.config import Config, global_config
+from text2tactilegraphics.generation.models import (
+    LoraManager,
+    ModelManager,
+    global_model_manager,
+)
+from text2tactilegraphics.generation.utils import open_rgb_image
 
 # Shared `Literal` aliases for the base-image API.
 GeminiModel = Literal["nano_banana_pro", "nano_banana"]

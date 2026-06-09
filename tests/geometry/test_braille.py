@@ -6,7 +6,7 @@ from PIL import Image
 from pytest_regressions.image_regression import ImageRegressionFixture
 from pytest_regressions.ndarrays_regression import NDArraysRegressionFixture
 
-from tactilegen.geometry.braille import (
+from text2tactilegraphics.geometry.braille import (
     STANDARD_CELL_SPACING,
     STANDARD_DOT_DIAMETER,
     STANDARD_DOT_RADIUS,

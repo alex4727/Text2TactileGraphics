@@ -6,8 +6,8 @@ import os
 from functools import cache, cached_property
 from typing import Any
 
-from tactilegen.config import DEFAULT_CKPT_PATHS, Config, global_config
-from tactilegen.secrets_ import get_gemini_api_key
+from text2tactilegraphics.config import DEFAULT_CKPT_PATHS, Config, global_config
+from text2tactilegraphics.secrets_ import get_gemini_api_key
 
 logger = logging.getLogger(__name__)
 
@@ -157,7 +157,7 @@ class ModelManager:
         import torch
         from diffusers.models import AutoencoderKL
 
-        from tactilegen.generation.tiled_diffusion.tiled_diffusion_pipeline import (
+        from text2tactilegraphics.generation.tiled_diffusion.tiled_diffusion_pipeline import (
             StableDiffusionXLDiffImg2ImgPipeline,
         )
 

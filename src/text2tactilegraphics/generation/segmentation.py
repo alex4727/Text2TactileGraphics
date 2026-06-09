@@ -6,8 +6,8 @@ import numpy as np
 import torch
 from PIL import Image, ImageDraw
 
-from tactilegen.generation.models import ModelManager, global_model_manager
-from tactilegen.generation.utils import mask_to_image
+from text2tactilegraphics.generation.models import ModelManager, global_model_manager
+from text2tactilegraphics.generation.utils import mask_to_image
 
 logger = logging.getLogger(__name__)
 

@@ -1,19 +1,19 @@
-"""TactileGen Gradio UI — entry point + UI layout."""
+"""Text2TactileGraphics Gradio UI — entry point + UI layout."""
 
 import gradio as gr
 
-from tactilegen import TexturedSegment
-from tactilegen.config import debug_enabled, get_total_gpus
-from tactilegen.generation.utils import mask_to_image
-from tactilegen.geometry.braille import (
+from text2tactilegraphics import TexturedSegment
+from text2tactilegraphics.config import debug_enabled, get_total_gpus
+from text2tactilegraphics.generation.utils import mask_to_image
+from text2tactilegraphics.geometry.braille import (
     STANDARD_DOT_HEIGHT,
     BraillePlacement,
     render_braille,
     render_standard_braille,
     render_standard_braille_on_image,
 )
-from tactilegen.secrets_ import ensure_runtime_secrets, get_gemini_api_key
-from tactilegen.ui.handlers import (
+from text2tactilegraphics.secrets_ import ensure_runtime_secrets, get_gemini_api_key
+from text2tactilegraphics.ui.handlers import (
     add_click,
     generate_base_image,
     generate_base_mesh,
@@ -35,10 +35,15 @@ from tactilegen.ui.handlers import (
     segment_with_click,
     segment_with_text,
 )
-from tactilegen.ui.state import AppState, get_sensor_image_paths
-from tactilegen.ui.tables import ColumnSpec, cell_column, items_table, table_cell_image
-from tactilegen.ui.theme import tactile_theme
-from tactilegen.ui.types_ import (
+from text2tactilegraphics.ui.state import AppState, get_sensor_image_paths
+from text2tactilegraphics.ui.tables import (
+    ColumnSpec,
+    cell_column,
+    items_table,
+    table_cell_image,
+)
+from text2tactilegraphics.ui.theme import tactile_theme
+from text2tactilegraphics.ui.types_ import (
     BrailleControls,
     BrailleOutput,
     MeshPreviewSection,
@@ -1229,7 +1234,18 @@ def _wire_stage3_events(
 
     # ------ final mesh generation
     output.generate_mesh_btn.click(
-        fn=lambda img, segs, normal, bm, text, ps_cm, ft, bp_cm, brailles, dh_mm, fp, pt_mm: (
+        fn=lambda img,
+        segs,
+        normal,
+        bm,
+        text,
+        ps_cm,
+        ft,
+        bp_cm,
+        brailles,
+        dh_mm,
+        fp,
+        pt_mm: (
             generate_final_mesh(
                 img,
                 segs,

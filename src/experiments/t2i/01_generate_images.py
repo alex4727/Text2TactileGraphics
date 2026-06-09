@@ -17,9 +17,9 @@ from experiments.t2i.config import (
     STYLE_PROMPT_PREFIX,
     T2I_BASELINES,
 )
-from tactilegen.config import Config
-from tactilegen.generation.base_image_generation import BaseImageGenerator
-from tactilegen.generation.models import ModelManager
+from text2tactilegraphics.config import Config
+from text2tactilegraphics.generation.base_image_generation import BaseImageGenerator
+from text2tactilegraphics.generation.models import ModelManager
 
 
 def generate_images(

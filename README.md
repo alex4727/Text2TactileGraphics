@@ -1,13 +1,13 @@
-# TactileGen
+# Text2TactileGraphics
 
 **Text-based Tactile Graphics Generation for the Visually Impaired**  
 [Ruihan Gao\*](https://ruihangao.github.io/), [Joonghyuk Shin\*](https://joonghyuk.com/), [Ava Pun](https://avapun.com/), [Jaesik Park](https://jaesik.info/), [Wenzhen Yuan](https://siebelschool.illinois.edu/about/people/all-faculty/yuanwz), and [Jun-Yan Zhu](https://www.cs.cmu.edu/~junyanz/)  
 Carnegie Mellon University · Seoul National University · University of Illinois Urbana-Champaign  
 
 ![arXiv](https://img.shields.io/badge/arXiv-2606.00000-b31b1b.svg)
-[![Project Page](https://img.shields.io/badge/Project_Page-Website-blue)](https://ruihangao.github.io/TactileGen/)
-[![Checkpoints](https://img.shields.io/badge/Hugging_Face-Checkpoints-yellow)](https://huggingface.co/alex4727/tactilegen_ckpt)
-[![Dataset](https://img.shields.io/badge/Hugging_Face-Dataset-yellow)](https://huggingface.co/datasets/alex4727/tactilegen_data)
+[![Project Page](https://img.shields.io/badge/Project_Page-Website-blue)](https://ruihangao.github.io/Text2TactileGraphics/)
+[![Checkpoints](https://img.shields.io/badge/Hugging_Face-Checkpoints-yellow)](https://huggingface.co/alex4727/text2tactilegraphics_ckpt)
+[![Dataset](https://img.shields.io/badge/Hugging_Face-Dataset-yellow)](https://huggingface.co/datasets/alex4727/text2tactilegraphics_data)
 
 ## System requirements
 
@@ -23,16 +23,16 @@ This repo uses the Python project manager [uv](https://docs.astral.sh/uv/).
 
 1. [Install uv](https://docs.astral.sh/uv/getting-started/installation/).
 2. Run `uv sync` to create a Python virtual environment with all dependencies installed.
-3. Download TactileGen checkpoints from Hugging Face Hub:
+3. Download Text2TactileGraphics checkpoints from Hugging Face Hub:
     ```bash
-    uv run --frozen hf download alex4727/tactilegen_ckpt \
+    uv run --frozen hf download alex4727/text2tactilegraphics_ckpt \
       --repo-type model \
       --local-dir ckpt
     ```
-   Place the `ckpt` folder in `~/.cache/tactilegen/`, or specify its location via the environment variable
-   `TACTILEGEN_CKPT_DIR`. If you keep it in the project root, point the runtime config at that directory:
+   Place the `ckpt` folder in `~/.cache/text2tactilegraphics/`, or specify its location via the environment variable
+   `TEXT2TACTILEGRAPHICS_CKPT_DIR`. If you keep it in the project root, point the runtime config at that directory:
     ```bash
-    export TACTILEGEN_CKPT_DIR="$PWD/ckpt"
+    export TEXT2TACTILEGRAPHICS_CKPT_DIR="$PWD/ckpt"
     ```
 
 ## Usage
@@ -42,7 +42,7 @@ This repo uses the Python project manager [uv](https://docs.astral.sh/uv/).
 Run the end-to-end Gradio demo with:
 
 ```bash
-uv run gradio src/tactilegen/ui/app.py
+uv run gradio src/text2tactilegraphics/ui/app.py
 ```
 
 ### Environment variables
@@ -54,7 +54,7 @@ terminal.
 |-----------------------------|-------------------------------------------------------------|------------------------------------------|---------------------------------|
 | `HF_TOKEN`                  | HuggingFace Hub access (gated weights, higher rate limits)  | None                                     | Always, when downloading models |
 | `GEMINI_API_KEY`            | Google Gemini API                                           | None                                     | Only when using Nano Banana     |
-| `TACTILEGEN_CKPT_DIR`       | Override default location for TactileGen custom checkpoints | `~/.cache/tactilegen/ckpt`               | Optional                        |
+| `TEXT2TACTILEGRAPHICS_CKPT_DIR`       | Override default location for Text2TactileGraphics custom checkpoints | `~/.cache/text2tactilegraphics/ckpt`               | Optional                        |
 | `HF_HOME`                   | Override default location for Hugging Face model weights    | `~/.cache/huggingface`                   | Optional                        |
 | `DIFFSYNTH_MODEL_BASE_PATH` | Override default location for DiffSynth model weights       | `./models` relative to the current shell | Optional                        |
 
@@ -62,7 +62,7 @@ terminal.
 
 ### Project structure
 
-- `src/tactilegen/`: Main source code.
+- `src/text2tactilegraphics/`: Main source code.
     - `assets/`: Image assets used during generation, and example assets for the Gradio app.
     - `generation/`: Image generation, texture generation, and segmentation.
     - `geometry/`: Mesh and braille creation.
@@ -120,17 +120,17 @@ uv run --frozen pytest -q tests --basetemp <output_directory>
 We delegate Qwen-Image LoRA training to [DiffSynth-Studio](https://github.com/modelscope/diffsynth-studio). The training data is released on HuggingFace in the CSV format expected by DiffSynth:
 
 ```bash
-export TACTILEGEN_TEXTURE_DATA=/path/to/tactilegen_data
+export TEXT2TACTILEGRAPHICS_TEXTURE_DATA=/path/to/text2tactilegraphics_data
 
-uv run --frozen hf download alex4727/tactilegen_data \
+uv run --frozen hf download alex4727/text2tactilegraphics_data \
   --repo-type dataset \
-  --local-dir "$TACTILEGEN_TEXTURE_DATA"
+  --local-dir "$TEXT2TACTILEGRAPHICS_TEXTURE_DATA"
 ```
 
 The downloaded dataset should have this layout:
 
 ```text
-$TACTILEGEN_TEXTURE_DATA/
+$TEXT2TACTILEGRAPHICS_TEXTURE_DATA/
   tactile_data.csv
   images/
     nb_000000.png
@@ -142,8 +142,8 @@ Then run training from the DiffSynth-Studio repository. These instructions are c
 
 ```bash
 accelerate launch examples/qwen_image/model_training/train.py \
-  --dataset_base_path "$TACTILEGEN_TEXTURE_DATA" \
-  --dataset_metadata_path "$TACTILEGEN_TEXTURE_DATA/tactile_data.csv" \
+  --dataset_base_path "$TEXT2TACTILEGRAPHICS_TEXTURE_DATA" \
+  --dataset_metadata_path "$TEXT2TACTILEGRAPHICS_TEXTURE_DATA/tactile_data.csv" \
   --data_file_keys image \
   --max_pixels 1048576 \
   --model_id_with_origin_paths "Qwen/Qwen-Image:transformer/diffusion_pytorch_model*.safetensors,Qwen/Qwen-Image:text_encoder/model*.safetensors,Qwen/Qwen-Image:vae/diffusion_pytorch_model.safetensors" \
@@ -169,7 +169,7 @@ Configure `accelerate` for your local hardware before launching (e.g., # of gpus
 If you find this work useful, please cite:
 
 ```bibtex
-@article{gao2026tactilegen,
+@article{gao2026text2tactilegraphics,
   title={Text-based Tactile Graphics Generation for the Visually Impaired},
   author={Gao, Ruihan and Shin, Joonghyuk and Pun, Ava and Park, Jaesik and Yuan, Wenzhen and Zhu, Jun-Yan},
   journal={arXiv preprint arXiv:2606.00000},
