@@ -21,11 +21,12 @@ from text2tactilegraphics.ui.handlers import (
     add_click,
     generate_base_image,
     generate_base_mesh,
+    generate_displacement,
     generate_final_mesh,
     generate_mesh_with_textures,
     generate_texture_geometry,
     generate_texture_image,
-    generate_tiling_and_displacement,
+    generate_tiled_preview,
     get_seg_overlay,
     handle_braille_overlay_click,
     make_tileable,
@@ -401,17 +402,14 @@ class TestGenerateTextureGeometry:
             generate_texture_geometry(_make_image(), True, app_state)
 
 
-class TestGenerateTilingAndDisplacement:
-    def test_should_return_tiled_preview_and_displacement_image(self):
+class TestGenerateTiling:
+    def test_should_return_tiled_preview(self):
         tile = _make_image(32, 32)
-        tiled_preview, displacement_img = generate_tiling_and_displacement(
-            tile, "opengl"
-        )
+        tiled_preview = generate_tiled_preview(tile)
 
         assert isinstance(tiled_preview, Image.Image)
         # 3×3 of the input tile.
         assert tiled_preview.size == (96, 96)
-        assert isinstance(displacement_img, Image.Image)
 
     def test_should_wrap_failure_in_gradio_error(self, monkeypatch: pytest.MonkeyPatch):
         monkeypatch.setattr(
@@ -419,7 +417,26 @@ class TestGenerateTilingAndDisplacement:
         )
 
         with pytest.raises(gr.Error, match="failed"):
-            generate_tiling_and_displacement(_make_image(32, 32), "opengl")
+            generate_tiled_preview(_make_image(32, 32))
+
+
+class TestGenerateDisplacement:
+    def test_should_return_displacement_image(self):
+        tiled_preview = _make_image(32 * 3, 32 * 3)
+        displacement_img = generate_displacement(tiled_preview, "opengl")
+
+        assert isinstance(displacement_img, Image.Image)
+        assert displacement_img.size == (96, 96)
+
+    def test_should_wrap_failure_in_gradio_error(self, monkeypatch: pytest.MonkeyPatch):
+        monkeypatch.setattr(
+            handlers,
+            "tileable_patch_to_displacement",
+            Mock(side_effect=RuntimeError("boom")),
+        )
+
+        with pytest.raises(gr.Error, match="failed"):
+            generate_displacement(_make_image(32 * 3, 32 * 3), "opengl")
 
 
 class TestMakeTileable:

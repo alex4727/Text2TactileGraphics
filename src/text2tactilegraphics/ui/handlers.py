@@ -260,17 +260,24 @@ def generate_texture_geometry(
         raise gr.Error(f"Geometry generation failed: {e}") from e
 
 
-def generate_tiling_and_displacement(
-    tileable_image: Image.Image, normal_format: NormalFormat
+def generate_tiled_preview(
+    tileable_image: Image.Image,
 ) -> tuple[Image.Image, Image.Image]:
     try:
-        tiled_preview = tile_image(tileable_image, 3, 3)
-        displacement_map = tileable_patch_to_displacement(tiled_preview, normal_format)
-        displacement_img = displacement_to_image(displacement_map)
-
-        return tiled_preview, displacement_img
+        return tile_image(tileable_image, 3, 3)
     except Exception as e:
         raise gr.Error(f"Tiling generation failed: {e}") from e
+
+
+def generate_displacement(
+    tiled_preview: Image.Image, normal_format: NormalFormat
+) -> Image.Image:
+    try:
+        displacement_map = tileable_patch_to_displacement(tiled_preview, normal_format)
+        displacement_img = displacement_to_image(displacement_map)
+        return displacement_img
+    except Exception as e:
+        raise gr.Error(f"Displacement generation failed: {e}") from e
 
 
 def make_tileable(

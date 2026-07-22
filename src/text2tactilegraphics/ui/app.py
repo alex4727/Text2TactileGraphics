@@ -17,11 +17,12 @@ from text2tactilegraphics.ui.handlers import (
     add_click,
     generate_base_image,
     generate_base_mesh,
+    generate_displacement,
     generate_final_mesh,
     generate_mesh_with_textures,
     generate_texture_geometry,
     generate_texture_image,
-    generate_tiling_and_displacement,
+    generate_tiled_preview,
     get_selected_mask_and_image,
     handle_braille_overlay_click,
     make_tileable,
@@ -805,16 +806,23 @@ def _wire_stage2_events(
         api_visibility="private",
     )
 
-    # Derive the 3×3 tiled preview + displacement map whenever the tileable
-    # patch changes.
     tiling.tileable_patch_img.change(
-        fn=lambda img, fmt: (
-            (None, None) if img is None else generate_tiling_and_displacement(img, fmt)
-        ),
-        inputs=[tiling.tileable_patch_img, tiling.normal_format_radio],
-        outputs=[tiling.tiled_img, tiling.displacement_img],
+        fn=lambda img: None if img is None else generate_tiled_preview(img),
+        inputs=[tiling.tileable_patch_img],
+        outputs=[tiling.tiled_img],
         api_visibility="private",
     )
+
+    displacement_inputs = [tiling.tiled_img, tiling.normal_format_radio]
+    for dep in displacement_inputs:
+        dep.change(
+            fn=lambda img, fmt: (
+                None if img is None else generate_displacement(img, fmt)
+            ),
+            inputs=displacement_inputs,
+            outputs=[tiling.displacement_img],
+            api_visibility="private",
+        )
 
     tiling.tile_btn.click(
         fn=lambda img, method, hp, freq, hpm: make_tileable(
@@ -1140,11 +1148,13 @@ def _wire_stage3_events(
     )
 
     # Update standard overlay when its inputs change
-    for dep in (
+    overlay_inputs = [
         stage1.base_img,
         controls.standard_braille_text_input,
         controls.plate_size_slider,
-    ):
+        controls.bottom_padding_slider,
+    ]
+    for dep in overlay_inputs:
         dep.change(
             fn=lambda img, t, ps_cm, bp_cm: (
                 None
@@ -1153,12 +1163,7 @@ def _wire_stage3_events(
                     img, t, plate_size=ps_cm / 100, bottom_padding=bp_cm / 100
                 )
             ),
-            inputs=[
-                stage1.base_img,
-                controls.standard_braille_text_input,
-                controls.plate_size_slider,
-                controls.bottom_padding_slider,
-            ],
+            inputs=overlay_inputs,
             outputs=[controls.standard_overlay_img],
             api_visibility="private",
         )
@@ -1234,18 +1239,7 @@ def _wire_stage3_events(
 
     # ------ final mesh generation
     output.generate_mesh_btn.click(
-        fn=lambda img,
-        segs,
-        normal,
-        bm,
-        text,
-        ps_cm,
-        ft,
-        bp_cm,
-        brailles,
-        dh_mm,
-        fp,
-        pt_mm: (
+        fn=lambda img, segs, normal, bm, text, ps_cm, ft, bp_cm, brailles, dh_mm, fp, pt_mm: (
             generate_final_mesh(
                 img,
                 segs,
